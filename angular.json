@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "libreria"
+    }
+  },
+  "defaultProject": "libreria",
+  "cli": {
+    "analytics": false
+  }
 }
