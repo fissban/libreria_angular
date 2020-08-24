@@ -1,9 +1,41 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class GenderService {
+@Injectable({providedIn: 'root'})
+export class GenderService
+{
+  URL: string = 'https://aqueous-spire-30568.herokuapp.com';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Se obtienen todos los generos.
+   * format:
+   * array -> [{"id":"", "name":""}]
+   */
+  async get(): Promise<any[]>
+  {
+    try
+    {
+      return await this.http.get<any[]>(this.URL + '/genero').toPromise();
+    }
+    catch (e)
+    {
+      console.log(e);
+      return new Array();
+    }
+  }
+
+  /**
+   * Agrega un nuevo genero.
+   * @param name 
+   */
+  async add(name: string): Promise<any>
+  {
+    let json =
+    {
+      name: name,
+    }
+    this.http.post<any>(this.URL + '/genero', json);
+  }
 }

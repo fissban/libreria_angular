@@ -1,1 +1,32 @@
-<p>get-books works!</p>
+<div class="container pt-3">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h3>Book list</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 border shadow-sm p-3 mb-5 bg-white rounded">
+            <table class="table">
+                <thead class="thead-dark">
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Gender</th>
+                    <th>Lended</th>
+                    <th></th>
+                </thead>
+                <tbody *ngFor="let book of books">
+                    <tr>
+                        <td>{{book.name}}</td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.gender}}</td>
+                        <td><input [id]="book.id" type="text" class="form-control form-control-sm" value="{{book.lended}}"></td>
+                        <td><button class="btn btn-success" (click)="lended(book.id)">Update</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>
