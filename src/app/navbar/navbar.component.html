@@ -1,12 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <a class="badge badge-dark p-1 mr-3" href="#"><span class="material-icons">bookmarks</span> LIBRARY STORE</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse align-end" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <button type="button" onclick="location.href='/'" class="btn btn-primary mr-4">Get all Books</button>
-            <button type="button" onclick="location.href='/add'" class="btn btn-primary mr-4">Add new Book</button>
+            <a class="badge badge-primary p-1 mr-3" href="#">
+                <span class="material-icons">topic</span>
+                Get all Books
+            </a>
+            <a class="badge badge-primary p-1 mr-3" href="/add">
+                <span class="material-icons">create_new_folder</span>
+                Add new Book
+            </a>
         </div>
     </div>
 </nav>
