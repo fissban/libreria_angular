@@ -8,22 +8,27 @@
         <div class="col-1"></div>
         <div class="col-10 border shadow-sm p-3 mb-5 bg-white rounded">
             <table class="table">
-                <thead class="thead-dark">
-                    <th>Name</th>
-                    <th>Author</th>
-                    <th>Gender</th>
-                    <th>Lended</th>
+                <thead class="thead-light">
+                    <th><button style="width:100%" class="btn btn-success" (click)="orderedTable('name')">Name</button></th>
+                    <th><button style="width:100%" class="btn btn-success" (click)="orderedTable('author')">Author</button></th>
+                    <th><button style="width:100%" class="btn btn-success" (click)="orderedTable('gender')">Gender</button></th>
+                    <th><button style="width:100%" class="btn btn-success">Lended</button></th>
                     <th></th>
                 </thead>
-                <tbody *ngFor="let book of books">
+                <tbody id="tbody-list">
+
+                </tbody>
+                <!--
+                <tbody *ngFor="let book of books" id="tbody-list">
                     <tr>
                         <td>{{book.name}}</td>
                         <td>{{book.author}}</td>
-                        <td>{{book.gender}}</td>
-                        <td><input [id]="book.id" type="text" class="form-control form-control-sm" value="{{book.lended}}"></td>
+                        <td>{{getGenderById(book.gender)}}</td>
+                        <td><input id="{{book.id}}" type="text" class="form-control form-control-sm" value="{{book.lended}}"></td>
                         <td><button class="btn btn-success" (click)="lended(book.id)">Update</button></td>
                     </tr>
                 </tbody>
+            -->
             </table>
         </div>
         <div class="col-1"></div>

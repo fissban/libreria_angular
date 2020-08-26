@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GenderService} from '../../service/gender.service';
 import {BooksService} from '../../service/books.service';
-import {analyzeAndValidateNgModules} from '@angular/compiler';
 
 @Component
   ({
@@ -37,6 +36,7 @@ export class AddBooksComponent implements OnInit
     // Se guarda el libro y se espera el status de la respuesta.
     if (this.response = await this.booksService.add(this.formName, this.formAuthor, this.formGender))
     {
+      // segun la respuesta del servidor mostraremos un alert con un mensaje.
       switch (this.response)
       {
         case 403:
