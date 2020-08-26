@@ -9,10 +9,32 @@
         <div class="col-10 border shadow-sm p-3 mb-5 bg-white rounded">
             <table class="table">
                 <thead class="thead-light">
-                    <th><button style="width:100%" class="btn btn-success" (click)="orderedTable('name')">Name</button></th>
-                    <th><button style="width:100%" class="btn btn-success" (click)="orderedTable('author')">Author</button></th>
-                    <th><button style="width:100%" class="btn btn-success" (click)="orderedTable('gender')">Gender</button></th>
-                    <th><button style="width:100%" class="btn btn-success">Lended</button></th>
+                    <th>
+                        <button style="width:100%;min-width: 120px;" class="btn btn-success" (click)="orderedTable('name')">
+                            Name
+                            <span *ngIf="ordered_item == 'name' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                            <span *ngIf="ordered_item == 'name' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                        </button>
+                    </th>
+                    <th>
+                        <button style="width:100%;min-width: 120px;" class="btn btn-success" (click)="orderedTable('author')">
+                            Author
+                            <span *ngIf="ordered_item == 'author' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                            <span *ngIf="ordered_item == 'author' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                        </button>
+                    </th>
+                    <th>
+                        <button style="width:100%;min-width: 120px;" class="btn btn-success" (click)="orderedTable('gender')">
+                            Gender
+                            <span *ngIf="ordered_item == 'gender' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                            <span *ngIf="ordered_item == 'gender' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                        </button>
+                    </th>
+                    <th>
+                        <button style="width:100%;min-width: 120px;" class="btn btn-success">
+                            Lended
+                        </button>
+                    </th>
                     <th></th>
                 </thead>
                 <tbody id="tbody-list">
