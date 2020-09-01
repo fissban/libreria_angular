@@ -1,9 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: rgb(245, 245, 245);
+    background: rgb(46, 103, 175);
+    background: linear-gradient(180deg, rgba(46, 103, 175, 1) 0%, rgba(149, 80, 187, 1) 75%);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-image: url(./assets/images/sylvia-yang-_ar2ENzmqb0-unsplash.jpg);*/
+}
+
+.pattern {
+    background: url('./assets/images/pattern.png')
 }
 
 /* se fuerza el css de google icon a alinear en el centro a los iconos. */
 .material-icons {
     vertical-align: middle !important;
+    line-height: 0 !important;
+}
+
+.bg-custom1 {
+    background-color: #9550bb !important;
+}
+
+.bg-custom2 {
+    background-color: #0561c4 !important;
+}
+
+.text-custom1 {
+    color: #007bff !important;
+}
+
+.border-custom {
+    border: 1px solid #c3c4c5 !important;
+}
+
+.btn-custom {
+    background-color: #007bff !important;
+    color: rgb(245, 245, 245);
+}
+
+.btn-custom:hover {
+    background-color: #0561c4 !important;
+    color: rgb(245, 245, 245);
+}
+
+.th-td-custom {
+    padding: 0.1rem !important;
+    vertical-align: middle !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    border-left: 1px solid #dee2e6 !important;
+    font-size: 13px !important;
 }

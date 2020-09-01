@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BooksService} from '../../service/books.service';
 import {GenderService} from '../../service/gender.service';
 
+declare var $: any
+
 @Component
   ({
     selector: 'app-get-books',
@@ -12,11 +14,14 @@ export class GetBooksComponent implements OnInit
 {
   // lista de libros
   books: any[] = [];
-  // lista de generos
-  genders: any[] = [];
   // lista de estado de orden ASC o DESC
   ordered_item: string = '';
   ordered_action: string = '';
+  // modal configs
+  bookId: number;
+  modalName: string;
+  modalAuthor: string;
+  modalStock: string;
 
   /**
    * Constructor
@@ -25,13 +30,14 @@ export class GetBooksComponent implements OnInit
    */
   constructor(private genderService: GenderService, private booksService: BooksService) {}
 
-  async ngOnInit(): Promise<void>
+  ngOnInit(): void
   {
-    // se lee desde el servidor la lista de libros.
-    this.books = await this.booksService.get();
-    // se lee todos los generos.
-    this.genders = await this.genderService.get();
-    // se genera la estructura del tbody con la lista de libros.
+    //
+  }
+
+  async setTarget(value: string)
+  {
+    this.books = await this.booksService.getBooksBy('gender', value);
     this.generateTableData();
   }
 
@@ -59,14 +65,15 @@ export class GetBooksComponent implements OnInit
       // td
       let tdName = this.createTD(b.name);
       let tdAuthor = this.createTD(b.author);
-      let tdGender = this.createTD(this.getGenderById(b.gender));
-      let input = this.createInput(b.lended, b.id);
-      let button = this.createButton(b, 'Update');
+      let tdGender = this.createTD(b.gender);
+      let tdStock = this.createTD(b.stock);
+      //let input = this.createInput(b.lended, b.id);
+      let button = this.createButton(b, 'Lended');
 
       tr.appendChild(tdName);
       tr.appendChild(tdAuthor);
       tr.appendChild(tdGender);
-      tr.appendChild(input);
+      tr.appendChild(tdStock);
       tr.appendChild(button);
       tbody.appendChild(tr);
     });
@@ -75,36 +82,28 @@ export class GetBooksComponent implements OnInit
   createButton(b: any, text: string)
   {
     var td = document.createElement('td');
+    td.classList.add('th-td-custom');
     var btn = document.createElement('button');
     // se agregan estilo definido por bootstrap
     btn.classList.add('btn');
-    btn.classList.add('btn-primary');
+    if (b.stock > 0)
+    {
+      btn.classList.add('btn-primary');
+    }
+    else
+    {
+      btn.classList.add('btn-secondary');
+      btn.setAttribute('disabled', 'true');
+    }
+
+    btn.classList.add('btn-sm');
+    //btn.classList.add('btn-sm');
     // se define el atributo id para el boton
     var txt = document.createTextNode(text);
     btn.appendChild(txt);
     // se agrega el listener click con su funcion.
-    btn.addEventListener("click", () =>
-    {
-      let lended: string = (<HTMLInputElement>document.getElementById(b.id)).value;
-      this.booksService.lended(b.id, lended);
-    });
+    btn.addEventListener("click", () => this.lended(b.id));
     td.appendChild(btn);
-
-    return td;
-  }
-
-  private createInput(text: string, id: any)
-  {
-    let td = document.createElement('td')
-    let input = document.createElement('input');
-    // se aplica el class indicado por bootstrap
-    input.classList.add('form-control');
-    // type generico para los de tipo texto
-    input.setAttribute('type', 'text');
-    // texto
-    input.setAttribute('value', text);
-    input.setAttribute('id', id);
-    td.appendChild(input);
 
     return td;
   }
@@ -112,6 +111,7 @@ export class GetBooksComponent implements OnInit
   private createTD(text: string)
   {
     let td = document.createElement('td')
+    td.classList.add('th-td-custom');
     // texto
     let nameText = document.createTextNode(text);
     td.appendChild(nameText);
@@ -120,32 +120,24 @@ export class GetBooksComponent implements OnInit
   }
 
   /**
-   * Cambia el estado 'lended' de un libro en la base de datos.
+   * - Define el id del libro que se quiere prestar.
+   * - Abre el modal para ingresar los datos del usuario.
    * @param id 
    */
-  lended(id: string): void
+  lended(id: number): void
   {
-    // se asigno un id al input para poder obtener su valor.
-    let lended: string = (<HTMLInputElement>document.getElementById(id)).value;
-    this.booksService.lended(id, lended);
-  }
+    this.bookId = id;
 
-  /**
-   * Se obtiene el nombre de un genero de acuerdo a su ID.
-   * @param value string
-   */
-  getGenderById(value: string): string
-  {
-    let aux: string = 'none';
-    this.genders.forEach(g =>
+    this.books.forEach(b =>
     {
-      if (g.id == value)
+      if (b.id == id)
       {
-        aux = g.name;
+        this.modalName = b.name;
+        this.modalAuthor = b.author;
+        this.modalStock = b.stock;
       }
     });
-
-    return aux;
+    $('#bookLended').modal('show');
   }
 
   /**

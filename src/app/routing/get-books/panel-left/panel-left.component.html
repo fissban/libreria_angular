@@ -1,0 +1,17 @@
+<div *ngFor="let g of gendersCount">
+    <div class="row pt-1">
+        <div class="col-12">
+            <button type="button" (click)="selectTarget(g.gender)" class="btn btn-success text-left shadow" style="width: 100%; font-size: 14px;">
+                <div class="row">
+                    <div class="col-9">
+                        {{g.gender}}
+                    </div>
+                    <div class="col-3">
+                        <span class="badge badge-light">{{g.count}}</span>
+                    </div>
+
+                </div>
+            </button>
+        </div>
+    </div>
+</div>

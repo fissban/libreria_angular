@@ -1,59 +1,111 @@
-<div class="container pt-3">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h3>Book list</h3>
+<div class="container-fluid mt-3 mb-4 border-custom shadow bg-light rounded">
+    <div class="row text-center">
+        <div class="col-2 max-height border rounded pt-3 shadow">
+            <app-panel-left (target)="setTarget($event)"></app-panel-left>
+        </div>
+        <div class="col-10 max-height pt-3">
+            <div class="row">
+                <div class="col-12">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" style="width: 89%;" type="text" id="validationDefault01" placeholder="SEARCH">
+                        <button class="btn btn-custom my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <th>
+                                <button style="width:100%;min-width: 120px;" class="btn btn-sm btn-custom" (click)="orderedTable('name')">
+                                    Name
+                                    <span *ngIf="ordered_item == 'name' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                                    <span *ngIf="ordered_item == 'name' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button style="width:100%;min-width: 120px;" class="btn btn-sm btn-custom" (click)="orderedTable('author')">
+                                    Author
+                                    <span *ngIf="ordered_item == 'author' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                                    <span *ngIf="ordered_item == 'author' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button style="width:100%;min-width: 120px;" class="btn btn-sm btn-custom" (click)="orderedTable('gender')">
+                                    Gender
+                                    <span *ngIf="ordered_item == 'gender' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                                    <span *ngIf="ordered_item == 'gender' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                                </button>
+                            </th>
+                            <th>
+                                <button style="width:100%;min-width: 120px;" class="btn btn-sm btn-custom" (click)="orderedTable('stock')">
+                                    Stock
+                                    <span *ngIf="ordered_item == 'stock' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
+                                    <span *ngIf="ordered_item == 'stock' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
+                                </button>
+                            </th>
+                            <th></th>
+                        </thead>
+                        <tbody id="tbody-list" style="overflow-y: auto">
+                            <!-- content dinamic -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10 border shadow-sm p-3 mb-5 bg-white rounded">
-            <table class="table">
-                <thead class="thead-light">
-                    <th>
-                        <button style="width:100%;min-width: 120px;" class="btn btn-success" (click)="orderedTable('name')">
-                            Name
-                            <span *ngIf="ordered_item == 'name' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
-                            <span *ngIf="ordered_item == 'name' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
-                        </button>
-                    </th>
-                    <th>
-                        <button style="width:100%;min-width: 120px;" class="btn btn-success" (click)="orderedTable('author')">
-                            Author
-                            <span *ngIf="ordered_item == 'author' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
-                            <span *ngIf="ordered_item == 'author' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
-                        </button>
-                    </th>
-                    <th>
-                        <button style="width:100%;min-width: 120px;" class="btn btn-success" (click)="orderedTable('gender')">
-                            Gender
-                            <span *ngIf="ordered_item == 'gender' && ordered_action == 'DESC'" class="material-icons">arrow_circle_up</span>
-                            <span *ngIf="ordered_item == 'gender' && ordered_action == 'ASC'" class="material-icons">arrow_circle_down</span>
-                        </button>
-                    </th>
-                    <th>
-                        <button style="width:100%;min-width: 120px;" class="btn btn-success">
-                            Lended
-                        </button>
-                    </th>
-                    <th></th>
-                </thead>
-                <tbody id="tbody-list">
+</div>
 
-                </tbody>
-                <!--
-                <tbody *ngFor="let book of books" id="tbody-list">
-                    <tr>
-                        <td>{{book.name}}</td>
-                        <td>{{book.author}}</td>
-                        <td>{{getGenderById(book.gender)}}</td>
-                        <td><input id="{{book.id}}" type="text" class="form-control form-control-sm" value="{{book.lended}}"></td>
-                        <td><button class="btn btn-success" (click)="lended(book.id)">Update</button></td>
-                    </tr>
-                </tbody>
-            -->
-            </table>
+<!-- MODAL LENDED -->
+<div class="modal" tabindex="-1" id="bookLended">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lended Book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 text-center mb-2">
+                        <img src="../../../assets/images/icons/62873-bookmark-icon.png" width="75px" alt="icon modal">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form action="">
+                            <div class="form-group row">
+                                <label for="modalName" class="col-sm-2 col-form-label col-form-label-sm">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" id="modalName" [value]="modalName" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="modalAuthor" class="col-sm-2 col-form-label col-form-label-sm">Author</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" id="modalAuthor" [value]="modalAuthor" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="modalStock" class="col-sm-2 col-form-label col-form-label-sm">Stock</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-sm" id="modalStock" [value]="modalStock" disabled>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+                <!-- AGREGAR INFO DE QUIEN SE LO LLEVA Y EL BOTON SUBMIT -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+            </div>
         </div>
-        <div class="col-1"></div>
     </div>
-
 </div>

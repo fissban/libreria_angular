@@ -1,0 +1,47 @@
+<div class="container-fluid mt-3 mb-4 border-custom shadow bg-light rounded">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>DNI</th>
+                    <th></th>
+                </thead>
+                <tbody id='tbody-user'>
+                    <tr *ngFor="let user of allAccounts">
+                        <td>{{user.fullname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.phone}}</td>
+                        <td>{{user.address}}</td>
+                        <td>{{user.state}}</td>
+                        <td>{{user.city}}</td>
+                        <td>{{user.dni}}</td>
+                        <td>{{user.date | date}}</td>
+                        <td><button class="btn btn-primary">Modify</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 ">
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm text-center">
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">
+                            1
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

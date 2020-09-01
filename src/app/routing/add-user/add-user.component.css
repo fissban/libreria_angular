@@ -1,0 +1,33 @@
+.small-hidden {
+    visibility: hidden;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+
+.small-error {
+    color: red;
+    visibility: visible;
+    margin-top: -0.25rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.small-fine {
+    color: green;
+    visibility: visible;
+    padding-top: calc(.25rem + 1px);
+    padding-bottom: calc(.25rem + 1px);
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.border-error {
+    border: 1px solid red !important;
+}
+
+.border-fine {
+    border: 1px solid green !important;
+}

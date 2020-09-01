@@ -1,0 +1,64 @@
+<div *ngIf="!isLogin(); else homeComponent" class="container">
+
+    <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="col-6 text-center border-custom shadow p-3 mb-4 bg-light rounded">
+            <div class="row">
+                <div class="col-12">
+                    <img src="../../../assets/images/icons/62863-books-icon.png" width="150px" alt="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <hr>
+                    <h1 class="text-primary">Library</h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form (ngSubmit)="submit()" action="" method="POST">
+                        <div class="form-group row">
+                            <label for="formUser" class="col-sm-3 col-form-label col-form-label-sm">User</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="formUser" id="formUser" class="form-control form-control-sm" [(ngModel)]="formUser" required>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="formPass" class="col-sm-3 col-form-label col-form-label-sm">Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" name="formPass" id="formPass" class="form-control form-control-sm" [(ngModel)]="formPass">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Send</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <div *ngIf="alert" class="alert alert-danger text-center" role="alert">
+                {{alert}}
+            </div>
+        </div>
+        <div class="col-3"></div>
+
+    </div>
+
+</div>
+
+<ng-template #homeComponent>
+    <div class="container" style="min-height: 77.8vh;">
+        <div class="row m-3">
+            <div class="col-12 text-center bg-light p-3 border rounded">
+                <h1 class="text-custom1">Welcome {{getUser()}}</h1>
+            </div>
+        </div>
+    </div>
+</ng-template>
